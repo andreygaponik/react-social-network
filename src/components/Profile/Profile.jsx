@@ -2,11 +2,12 @@ import AllPosts from './AllPosts/AllPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import styles from './Profile.module.css';
 
-const Profile = () => {
+const Profile = (props) => {
+  
   return (
     <div>
       <ProfileInfo />
-      <AllPosts />
+      <AllPosts posts={props.posts} />
     </div>
   )
 }
