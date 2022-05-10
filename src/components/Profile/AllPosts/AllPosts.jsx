@@ -1,21 +1,28 @@
+import React from 'react';
 import styles from './AllPosts.module.css';
 import Post from './Post/Post';
 
 const AllPosts = (props) => {
-  
-  let posts = [
-    {id: 1, message: 'Hi', likesCount: 12},
-    {id: 2, message: "It's my first post!", likesCount: 15}
-  ];
-
+  console.log(props);
   let postElements = props.posts.map(el => <Post id={el.id} message={el.message} likesCount={el.likesCount} />);
+
+  let newPostElement = React.createRef();
+
+  let addPost = () => {
+    props.addPost();
+  }
+
+  let onPostChange = () => {
+    let text = newPostElement.current.value;
+    props.updatePostText(text);
+  }
 
   return (
     <div>
       My posts1
       <div>
-        <textarea></textarea>
-        <button>Add post</button>
+        <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
+        <button onClick={addPost} >Add post</button>
       </div>
       <div className={styles.posts}>
         {postElements}

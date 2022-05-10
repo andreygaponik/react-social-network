@@ -10,12 +10,27 @@ const App = (props) => {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Navbar />
+        <Navbar state={props.state.sidebar} />
         {/* <Profile /> */}
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path="/profile/*" element={<Profile posts={props.posts} />} />
-            <Route path="/dialogs/*" element={<Dialogs />} />
+            <Route
+              path="/profile/*"
+              element={<Profile
+                state={props.state.profilePage}
+                addPost={props.addPost}
+                updatePostText={props.updatePostText}
+              />
+              }
+            />
+            <Route
+              path="/dialogs/*"
+              element={<Dialogs
+                state={props.state.dialogsPage} 
+                updateMessageText={props.updateMessageText}
+                addMessage={props.addMessage}
+                />}
+            />
           </Routes>
         </div>
       </div>

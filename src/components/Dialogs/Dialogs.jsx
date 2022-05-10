@@ -1,29 +1,36 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import styles from './Dialogs.module.css';
 
 const Dialogs = (props) => {
-  let dialogs = [
-    {id: 1, name: 'Andrey Gaponik'},
-    {id: 2, name: 'John Smith'}
-  ];
+  let dialogsElements = props.state.dialogs.map(el => <DialogItem name={el.name} id={el.id} avatar={el.avatar} />);
+  let messagesElements = props.state.messages.map(el => <Message message={el.message} id={el.id} />);
+  let messageArea = React.createRef();
 
-  let messages = [
-    {id: 1, message: 'Hi'},
-    {id: 2, message: 'test'}
-  ];
+  let addMessage = () => {
+    props.addMessage();
+  }
 
-  let dialogsElements = dialogs.map(el => <DialogItem name={el.name} id={el.id} />);
-  let messagesElements = messages.map(el => <Message message={el.message} id={el.id} />);
+  let updateMessage = () => {
+    let text = messageArea.current.value;
+    props.updateMessageText(text);
+  };
 
   return (
     <div className={styles.dialogs}>
       <div className={styles.dialogs_items}>
         {dialogsElements}
       </div>
-      <div className={styles.messages}>
-        {messagesElements}
+      <div>
+        <div className={styles.messages}>
+          {messagesElements}
+        </div>
+        <div>
+          <textarea onChange={updateMessage} ref={messageArea} value={props.state.newMessageText}></textarea>
+          <button onClick={addMessage}>Add message</button> 
+        </div>
       </div>
     </div>
   )
