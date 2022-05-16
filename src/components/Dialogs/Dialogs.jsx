@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import styles from './Dialogs.module.css';
+import { addMessageActionCreator, updateMessageActionCreator } from '../../redux/dialogs-reducer';
 
 const Dialogs = (props) => {
   let dialogsElements = props.state.dialogs.map(el => <DialogItem name={el.name} id={el.id} avatar={el.avatar} />);
@@ -10,12 +11,12 @@ const Dialogs = (props) => {
   let messageArea = React.createRef();
 
   let addMessage = () => {
-    props.addMessage();
+    props.dispatch(addMessageActionCreator());
   }
 
   let updateMessage = () => {
     let text = messageArea.current.value;
-    props.updateMessageText(text);
+    props.dispatch(updateMessageActionCreator(text));
   };
 
   return (
