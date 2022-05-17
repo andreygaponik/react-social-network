@@ -10,6 +10,9 @@ const Navbar = (props) => {
           <NavLink to='/profile' className={(navData) => navData.isActive ? styles.active : '' }>Profile</NavLink>
         </div>
         <div className={styles.item}>
+          <NavLink to='/users' className={(navData) => navData.isActive ? styles.active : '' }>Users</NavLink>
+        </div>
+        <div className={styles.item}>
           <NavLink to='/dialogs' className={(navData) => navData.isActive ? styles.active : '' }>Dialogs</NavLink>
         </div>
         <div className={styles.item}>
@@ -23,7 +26,7 @@ const Navbar = (props) => {
         </div>
       </nav>
       <div className='sidebar'>
-        <Friends state={props.state} />
+        {/* <Friends state={props.state} /> */}
       </div>
     </aside>
 	)

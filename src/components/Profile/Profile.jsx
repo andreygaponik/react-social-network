@@ -1,16 +1,14 @@
 import AllPosts from './AllPosts/AllPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import styles from './Profile.module.css';
+import AllPostsContainer from './AllPosts/AllPostsContainer';
 
 const Profile = (props) => {
-  console.log(props);
   return (
     <div>
       <ProfileInfo />
-      <AllPosts
-        posts={props.state.posts}
-        dispatch={props.dispatch}
-        newPostText={props.state.newPostText}
+      <AllPostsContainer
+        // store={props.store}
       />
     </div>
   )

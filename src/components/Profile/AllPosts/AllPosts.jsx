@@ -4,18 +4,19 @@ import Post from './Post/Post';
 import {addPostActionCreator, onPostChangeActionCreator} from '../../../redux/profile-reducer';
 
 const AllPosts = (props) => {
-  console.log(props);
   let postElements = props.posts.map(el => <Post id={el.id} message={el.message} likesCount={el.likesCount} />);
 
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    props.dispatch(addPostActionCreator());
+    // props.dispatch(addPostActionCreator());
+    props.addPost();
   }
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.dispatch(onPostChangeActionCreator(text));
+    // props.dispatch(onPostChangeActionCreator(text));
+    props.updateNewPostChange(text)
   }
 
   return (
